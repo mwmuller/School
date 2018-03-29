@@ -43,33 +43,33 @@ public class SortingBalls {
 
     }
 
-    public static int[] OnQuicksort3(int[] balls, int max, int endIndex) {
+    public static int[] OnQuicksortAny(int[] balls, int max, int endIndex) {
         int countmin = 0, countmax = 0;
-        int leftVal, rightVal;
+        int leftVal, rightVal, pivotVal;
         int end = endIndex, start = 0;
-        for (int i = 0; i < end; i++) {
-            if (balls[i] < max) {
-                countmin++;
-            } else if (balls[i] == max) {
-                countmax++;
-            }
+        for (int i = 0; i < end; i++) { // This for loops counts the number of the balls.
+            if (balls[i] < max) {       // We consider the max value as one set of balls, 
+                countmin++;             // and all other colors are grouped together
+            } else if (balls[i] == max) {// This will always run at O(n) because we iterate through
+                countmax++;             // Each element in the balls array.
         }
         end = end - 1;
         int pivot = end - countmax + 1; // Makes sure that the spots to the right of the pivit will hold the number of 1's
         while (true) {
             leftVal = balls[start];
             rightVal = balls[end];
+            pivotVal = balls[pivot];
             if (start == pivot) {
-                if (balls[pivot] == max && leftVal != max && rightVal == max) {
-                    balls[end] = balls[pivot];
+                if (pivotVal == max && leftVal != max && rightVal == max) { // Checks if pivot needs to be swapped
+                    balls[end] = pivotVal;
                     balls[pivot] = rightVal;
                     break;
                 } else if (leftVal == max) {
                     break;
                 }
             } else if (end == pivot) {
-                if (balls[pivot] != max && rightVal != max && leftVal == max) {
-                    balls[start] = balls[pivot];
+                if (pivotVal != max && rightVal != max && leftVal == max) { // checks if pivot needs to be swapped
+                    balls[start] = pivotVal;
                     balls[pivot] = leftVal;
                     break;
                 } else if (rightVal == max) {
@@ -91,49 +91,8 @@ public class SortingBalls {
         if (max == 1) {
             return balls;
         } else {
-            return OnQuicksort3(balls, max - 1, pivot);
+            return OnQuicksortAny(balls, max - 1, pivot);
         }
-    }
-
-    public static int[] OnQuicksort2(int[] balls) {
-        int count1 = 0, count0 = 0;
-        int leftVal, rightVal;
-        int end = 0, start = 0;
-        for (int i = 0; i < balls.length; i++) {
-            if (balls[i] == 0) {
-                count0++;
-            } else {
-                count1++;
-            }
-        }
-        int pivot = balls.length - count1; // Makes sure that the spots to the right of the pivit will hold the number of 1's
-        end = balls.length - 1;
-        while (true) {
-            leftVal = balls[start];
-            rightVal = balls[end];
-            if (start == pivot && balls[pivot] == 0 && leftVal == 1 && rightVal == 0) {
-                balls[end] = balls[pivot];
-                balls[pivot] = rightVal;
-                break;
-            } else if (end == pivot && balls[pivot] == 0 && rightVal == 0 && leftVal == 1) {
-                balls[start] = balls[pivot];
-                balls[pivot] = leftVal;
-                break;
-            }
-            if (leftVal == 0) {
-                start++;
-            }
-            if (rightVal == 1) {
-                end--;
-            }
-            if (leftVal > rightVal) { // swaps the values
-                int temp = leftVal;
-                balls[start] = rightVal;
-                balls[end] = temp;
-            }
-
-        }
-        return balls;
     }
 
     public static int[] generateArray2(int N) {
@@ -148,7 +107,8 @@ public class SortingBalls {
     public static void twoColors() {
         long start = System.nanoTime();
         for (int i = 0; i < testN.length; i++) {
-            printArr(OnQuicksort2(generateArray2(testN[i])));
+            int[] genArr = generateArray2(testN[i]);
+            printArr(OnQuicksortAny(genArr, 1, genArr.length));
             System.out.println("\n");
         }
         System.out.println("Run Rime: " + (System.nanoTime() - start) / 1000000 + " ns");
@@ -183,7 +143,7 @@ public class SortingBalls {
         long start = System.nanoTime();
         for (int i = 0; i < testN.length; i++) {
             int[] genArr = generateArray3(testN[i]);
-            printArr(OnQuicksort3(genArr, 2, genArr.length));
+            printArr(OnQuicksortAny(genArr, 2, genArr.length));
             System.out.println("\n");
         }
         System.out.println("Run Rime: " + (System.nanoTime() - start) / 1000000 + " ns");
@@ -200,7 +160,7 @@ public class SortingBalls {
         long start = System.nanoTime();
         for (int i = 0; i < testN.length; i++) {
             int[] genArr = generateArrayAny(testN[i], bound);
-            arr = OnQuicksort3(genArr, bound - 1, genArr.length);
+            arr = OnQuicksortAny(genArr, bound - 1, genArr.length);
             System.out.println("\n");
         }
         long total = (System.nanoTime() - start) / 1000000;
