@@ -52,6 +52,7 @@ public class SortingBalls {
                 countmin++;             // and all other colors are grouped together
             } else if (balls[i] == max) {// This will always run at O(n) because we iterate through
                 countmax++;             // Each element in the balls array.
+            }
         }
         end = end - 1;
         int pivot = end - countmax + 1; // Makes sure that the spots to the right of the pivit will hold the number of 1's
@@ -153,9 +154,9 @@ public class SortingBalls {
         Scanner in = new Scanner(System.in);
         int[] arr = null;
         int bound = 0;
-        while(bound <= 1){
-        System.out.println("Enter the number of colors you want: ");
-        bound = Integer.parseInt(in.nextLine());
+        while (bound <= 1) {
+            System.out.println("Enter the number of colors you want: ");
+            bound = Integer.parseInt(in.nextLine());
         }
         long start = System.nanoTime();
         for (int i = 0; i < testN.length; i++) {
