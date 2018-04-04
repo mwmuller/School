@@ -77,36 +77,36 @@ public class Proj4sort {
         for (int i = 0; i < 15; i++) {
             if (i == 0) {
                 System.out.println("Times for N = 1000:");
-            } else if (i == 4) {
+            } else if (i == 5) {
                 System.out.println("Times for N = 10,000:");
-            } else if (i == 9) {
+            } else if (i == 10) {
                 System.out.println("Times for N = 100,000:");
             }
-            System.out.println(timesMerge[i] + "ms");
+            System.out.println(timesMerge[i]);
         }
         //heap times
         System.out.println("HeapSort Times:");
         for (int i = 0; i < 15; i++) {
             if (i == 0) {
                 System.out.println("Times for N = 1000:");
-            } else if (i == 4) {
+            } else if (i == 5) {
                 System.out.println("Times for N = 10,000:");
-            } else if (i == 9) {
+            } else if (i == 10) {
                 System.out.println("Times for N = 100,000:");
             }
-            System.out.println(timesHeap[i] + "ms");
+            System.out.println(timesHeap[i]);
         }
         //quick times
         System.out.println("QuickSort Times:");
         for (int i = 0; i < 15; i++) {
             if (i == 0) {
                 System.out.println("Times for N = 1000:");
-            } else if (i == 4) {
+            } else if (i == 5) {
                 System.out.println("Times for N = 10,000:");
-            } else if (i == 9) {
+            } else if (i == 10) {
                 System.out.println("Times for N = 100,000:");
             }
-            System.out.println(timesQuick[i] + "ms");
+            System.out.println(timesQuick[i]);
         }
     }
 }

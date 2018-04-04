@@ -13,13 +13,9 @@ class Proj4
     public static void main(String args[])
     {
         // Create a graph given in the above diagram
+        String fileName = args[0];
         DAG dag = new DAG(6);
-        dag.addEdge(5, 2);
-        dag.addEdge(5, 0);
-        dag.addEdge(4, 0);
-        dag.addEdge(4, 1);
-        dag.addEdge(2, 3);
-        dag.addEdge(3, 1);
+        Graph gr = new Graph(fileName, dag);
  
         System.out.println("Following is a Topological " +
                            "sort of the given graph");
