@@ -169,6 +169,7 @@ public class SortingBalls {
         printArr(arr);
         long printTotal = (System.nanoTime() - start) / 1000000;
         System.out.println("\n");
+        System.out.println("Elements Sorted: " + testN[0]);
         System.out.println("Sort Time: " + total + " ms");
         System.out.println("Print Time: " + printTotal + " ms");
     }
